@@ -15,7 +15,7 @@ package ru.avalon.java.dev.j10.labs.models;
  *  <li> орган, выдавший документ.
  * </ol>
  */
-class Passport {
+public class Passport{
 
     /*
      * TODO(Студент): Закончить определение класса.
@@ -34,7 +34,63 @@ class Passport {
      * 4. Помните о возможности существования перегруженных
      *    конструкторов.
      *
-     * 5. Обеспечте возможность использования класса за
+     * 5. Обеспечьте возможность использования класса за
      *    пределами пакета.
      */
+
+    private int number;
+    private String name;
+    private String surname;
+    private String patronymic;
+    private String secondName;
+    private String birthDate;
+    private String issueDate;
+    private String authority;
+
+    public Passport(String name, String surname, String patronymic) {
+        this.name = name;
+        this.surname = surname;
+        this.patronymic = patronymic;
+    }
+
+    public Passport(String name, String secondName, String patronymic, String surname) {
+        this.name = name;
+        this.secondName = secondName;
+        this.patronymic = patronymic;
+        this.surname = surname;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getPatronymic() {
+        return patronymic;
+    }
+
+    public String getSecondName() {
+        return secondName;
+    }
+
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    public String getIssueDate() {
+        return issueDate;
+    }
+
+    public String getAuthority() {
+        return authority;
+    }
+
+
 }

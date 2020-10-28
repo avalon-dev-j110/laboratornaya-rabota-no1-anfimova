@@ -1,5 +1,7 @@
 package ru.avalon.java.dev.j10.labs.models;
 
+import ru.avalon.java.dev.j10.labs.commons.Address;
+
 /**
  * Представление о человеке.
  * <p>
@@ -10,13 +12,30 @@ package ru.avalon.java.dev.j10.labs.models;
  *     <li>пропиской по месту жительства.
  * </ol>
  */
+
 public class Person {
 
+    private Passport passport;
+    private Address address;
+
+    public Person(Passport passport, Address address) {
+        this.passport = passport;
+        this.address = address;
+    }
+
+    public Person(Passport passport) {
+        this.passport = passport;
+    }
+
+    public Person(Address address) {
+        this.address = address;
+    }
+
     /**
-     * Возврвщает полное имя человека.
+     * Возвращает полное имя человека.
      * <p>
      * Если у человека есть Имя, Фамилия и Отчество, то
-     * возвращет Имя, Фимилию и Отчество, разделённые пробелом.
+     * возвращает Имя, Фамилию и Отчество, разделённые пробелом.
      * <p>
      * Если у человека нет Отчества, но есть второе имя, то
      * возвращает Имя, Первую букву второго имени, и Фамилию,
@@ -29,11 +48,21 @@ public class Person {
      *
      * @return имя человека в виде строки.
      */
+
     public String getFullName() {
         /*
          * TODO(Студент): Закончить определение метода 'getFullName()' класса 'Person'
          */
-        return null;
+        if (passport.getName() != null & passport.getSurname() != null & passport.getPatronymic() != null) {
+            return "%s %s %s".formatted(passport.getName(), passport.getSurname(), passport.getPatronymic());
+        } else if (passport.getPatronymic() == null & passport.getSecondName() != null) {
+            return "%s %s. %s".formatted(passport.getName(), passport.getSecondName().substring(0, 1), passport.getSurname());
+        } else if (passport.getPatronymic() == null & passport.getSecondName() == null
+                & passport.getName() != null & passport.getSurname() != null) {
+            return "%s %s".formatted(passport.getName(), passport.getSurname());
+        }
+        return "%s %s %s %s".formatted(passport.getName(), passport.getSecondName(),
+                passport.getSurname(), passport.getPatronymic());
     }
 
     /**
@@ -44,10 +73,14 @@ public class Person {
      *
      * @return адрес регистрации в виде строки.
      */
+
     public String getAddress() {
         /*
          * TODO(Студент): Закончить определение метода 'getAddress()' класса 'Person'
          */
-        return null;
+        if (address.getRegistrationAddress().equals(address.getResidentialAddress())) {
+            return address.getRegistrationAddress();
+        }
+        return address.getResidentialAddress();
     }
 }
